@@ -1,5 +1,5 @@
 import boto3, json, time
-from sagemaker.jumpstart.notebook_utils import list_jumpstart_models
+from sagemaker.jumpstart.notebook_utils import list_jumpstart_models as list_models
 from pprint import pprint
 
 def list_endpoints(): 
@@ -12,10 +12,10 @@ def list_endpoints():
         # endpoint_config = sagemaker_client.describe_endpoint_config(EndpointConfigName=endpoint['EndpointConfigName'])
         print(f'[{e["EndpointStatus"]}] - {e["EndpointName"]}')
 
-def list_jumpstart_models(filter_value="textembedding"):
+def list_jumpstart_models(filter_value="task == textembedding"):
     # filter_value = "task == textgeneration1"
     print("listing jumpstart models with filter value: ", filter_value)
-    jumpstart_models = list_jumpstart_models(filter=filter_value)
+    jumpstart_models = list_models(filter=filter_value)
     for m in jumpstart_models:
         print(m)
 
